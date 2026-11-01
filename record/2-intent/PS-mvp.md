@@ -219,16 +219,16 @@ evidence: [test:tests/test_router.py::test_present_consistent_reason_code_never_
 
 ### T3.2 · Duplicate-denial specialist
 
-- [ ] Uses only its own prompt, tools, and knowledge file
-- [ ] Produces a structured proposal: decision, amount, evidence claim IDs, rationale
-- [ ] Handles the same-date-different-procedure edge case correctly on the golden set
+- [x] Uses only its own prompt, tools, and knowledge file
+- [x] Produces a structured proposal: decision, amount, evidence claim IDs, rationale
+- [x] Handles the same-date-different-procedure edge case correctly on the golden set
 
 Depends: T3.1, T2.3
 
 ```ticket
 id: T3.2
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_duplicate_denial_specialist.py::test_propose_only_calls_its_own_allowed_tools, test:tests/test_duplicate_denial_specialist.py::test_propose_returns_a_structured_proposal, test:tests/test_duplicate_denial_specialist.py::test_handles_same_date_different_procedure_edge_case_on_the_golden_set, file:app/specialists/duplicate_denial/knowledge.md]
 ```
 
 ### T3.3 · Billing-error specialist
