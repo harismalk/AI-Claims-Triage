@@ -274,7 +274,9 @@ def _plant_bil_claim(rng, next_clm_id, members, providers, plans, *, overcharged
                   "generic_drug", "brand_drug"}]
     proc_cd = rng.choice(copayable)
     service_type = PROC_CATALOG[proc_cd][0]
-    plan_copay = _plan_copay_cents(plans, member.plan_cd, service_type) or 2_000
+    plan_copay = _plan_copay_cents(plans, member.plan_cd, service_type)
+    if plan_copay is None:
+        plan_copay = 2_000  # fallback only for a genuinely undefined copay, not a real $0 one
     if force_high_amount:
         charged = plan_copay + AUTO_RESOLVE_LIMIT_CENTS + rng.randint(1_000, 10_000)
     elif overcharged:

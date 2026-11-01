@@ -233,15 +233,15 @@ evidence: [test:tests/test_duplicate_denial_specialist.py::test_propose_only_cal
 
 ### T3.3 · Billing-error specialist
 
-- [ ] Compares charged copay against plan terms and cites the plan rule used
-- [ ] Produces the same structured proposal shape as T3.2
+- [x] Compares charged copay against plan terms and cites the plan rule used
+- [x] Produces the same structured proposal shape as T3.2
 
 Depends: T3.1, T2.3
 
 ```ticket
 id: T3.3
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_billing_error_specialist.py::test_overcharged_claims_under_the_limit_are_reversed_for_the_overage, test:tests/test_billing_error_specialist.py::test_correctly_charged_claims_are_denied, test:tests/test_billing_error_specialist.py::test_propose_returns_the_same_proposal_shape_as_duplicate_denial, file:app/specialists/billing_error/knowledge.md]
 ```
 
 ### T3.4 · Decision gate (code, not LLM)

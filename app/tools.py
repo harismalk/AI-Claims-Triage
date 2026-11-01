@@ -88,6 +88,20 @@ class DisputeView(BaseModel):
     complaint_text: str | None
 
 
+class MemberView(BaseModel):
+    """A member, with legacy codes resolved and legacy types cleaned up."""
+
+    member_id: int
+    first_name: str
+    last_name: str
+    date_of_birth: datetime.date
+    plan_code: str
+    status_code: str
+    status_description: str | None
+    effective_date: datetime.date
+    termination_date: datetime.date | None
+
+
 def _row_to_claim_view(cur, row: dict) -> ClaimView:
     return ClaimView(
         claim_id=row["clm_id_nbr"],
@@ -224,4 +238,33 @@ def get_dispute(dispute_id: int) -> DisputeView | None:
             resolution_amount_cents=_decimal_to_cents(row["disp_resln_amt"]) if row["disp_resln_amt"] is not None else None,
             resolution_date=_ymd_to_date(row["disp_resln_dt"]),
             complaint_text=complaints.get(row["disp_id_nbr"]),
+        )
+
+
+@tool(side_effect=False)
+def get_member(member_id: int) -> MemberView | None:
+    """Fetch a member by ID: name, plan, and enrollment status. Needed to look
+    up which plan's terms (get_plan_terms) apply to a claim.
+
+    Args:
+        member_id: the member's ID.
+
+    Returns:
+        A MemberView, or None if no member with that ID exists.
+    """
+    with _connect() as conn, conn.cursor() as cur:
+        cur.execute("SELECT * FROM mbr_mast WHERE mbr_id_nbr = %s", (member_id,))
+        row = cur.fetchone()
+        if not row:
+            return None
+        return MemberView(
+            member_id=row["mbr_id_nbr"],
+            first_name=row["mbr_fst_nm"],
+            last_name=row["mbr_lst_nm"],
+            date_of_birth=_ymd_to_date(row["mbr_dob"]),
+            plan_code=row["plan_cd"],
+            status_code=row["mbr_sts_cd"],
+            status_description=_resolve_code(cur, "MBR_STS", row["mbr_sts_cd"]),
+            effective_date=_ymd_to_date(row["mbr_eff_dt"]),
+            termination_date=_ymd_to_date(row["mbr_term_dt"]),
         )

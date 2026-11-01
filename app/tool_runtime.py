@@ -36,6 +36,7 @@ TOOL_REGISTRY: dict[str, Callable] = {
     "get_plan_terms": tools.get_plan_terms,
     "get_payment_history": tools.get_payment_history,
     "get_dispute": tools.get_dispute,
+    "get_member": tools.get_member,
     "update_claim_status": write_tools.update_claim_status,
     "issue_adjustment": write_tools.issue_adjustment,
 }

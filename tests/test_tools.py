@@ -15,8 +15,10 @@ from app.plans import Plan
 from app.tools import (
     ClaimView,
     DisputeView,
+    MemberView,
     find_similar_claims,
     get_dispute,
+    get_member,
     get_payment_history,
     get_plan_terms,
     lookup_claim,
@@ -110,7 +112,19 @@ def test_get_dispute_returns_none_for_missing_dispute():
     assert get_dispute(999_999_999) is None
 
 
+def test_get_member_returns_a_typed_member_view(dataset):
+    member_id = dataset.members[0].mbr_id
+    result = get_member(member_id)
+    assert isinstance(result, MemberView)
+    assert result.member_id == member_id
+    assert result.plan_code in ("BRONZE", "SILVER", "GOLD", "HDHP_2000")
+
+
+def test_get_member_returns_none_for_missing_member():
+    assert get_member(999_999_999) is None
+
+
 def test_no_tool_return_model_uses_raw_legacy_column_names():
-    for model in (ClaimView, DisputeView):
+    for model in (ClaimView, DisputeView, MemberView):
         field_names = set(model.model_fields)
         assert not (field_names & LEGACY_COLUMN_NAMES), f"{model.__name__} leaks raw column names: {field_names & LEGACY_COLUMN_NAMES}"
