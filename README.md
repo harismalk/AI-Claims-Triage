@@ -34,10 +34,4 @@ Then in Claude Code: `/execute-ticket T0.1`.
 
 ## Known limits
 
-- The guard hook covers Claude's file-edit tools. A shell command (`sed`, a script)
-  could still rewrite a fence; the validator and CI catch the resulting invalid
-  states, but not every silent change. Git history is the backstop.
-- No Linear/GitHub Issues sync. The record is the only tracker; add a one-way
-  projection later if a team joins.
-- Tenex notes this level of process is overkill for one person on one project. It's
-  used here deliberately, to practice it.
+- This level of process is overkill for one person on one project. It's used here deliberately to practice it.

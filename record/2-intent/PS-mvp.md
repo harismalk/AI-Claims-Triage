@@ -30,15 +30,15 @@ Demo: open a fresh Claude Code session; it starts oriented, and validation is cl
 
 Confirm the record, hooks, and skills behave as designed before building on them.
 
-- [ ] A fresh Claude Code session receives the orientation packet without prompting
-- [ ] `python3 tools/rec.py validate` passes
-- [ ] Editing a `DEC-*.md` file is blocked by the guard hook
-- [ ] The agent journal has a first entry describing the setup
+- [x] A fresh Claude Code session receives the orientation packet without prompting
+- [x] `python3 tools/rec.py validate` passes
+- [x] Editing a `DEC-*.md` file is blocked by the guard hook
+- [x] The agent journal has a first entry describing the setup
 
 ```ticket
 id: T0.1
-status: todo
-evidence: []
+status: done
+evidence: [file:record/3-history/agent-journal.md, commit:guard-hook-block-observed-DEC-0001]
 ```
 
 ---
@@ -54,14 +54,14 @@ Model a 15-year-old claims platform in Postgres on purpose: cryptic column names
 (`CLM_STS_CD`, `ADJ_RSN_2`, `MBR_ID_NBR`), status codes that need a lookup table,
 dates stored as `YYYYMMDD` strings, and a few sometimes-null fields.
 
-- [ ] `docker compose up -d` starts Postgres 16 with the schema applied
-- [ ] Tables cover members, plans, providers, claims, disputes, and a status-code lookup
-- [ ] At least three deliberate "legacy" quirks exist and are listed in the data dictionary
+- [x] `docker compose up -d` starts Postgres 16 with the schema applied
+- [x] Tables cover members, plans, providers, claims, disputes, and a status-code lookup
+- [x] At least three deliberate "legacy" quirks exist and are listed in the data dictionary
 
 ```ticket
 id: T1.1
-status: todo
-evidence: []
+status: done
+evidence: [file:docker-compose.yml, file:db/schema.sql, file:record/1-truth/DICT-legacy-schema.md]
 ```
 
 ### T1.2 · Plan definitions
