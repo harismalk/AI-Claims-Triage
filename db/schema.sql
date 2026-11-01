@@ -66,6 +66,15 @@ CREATE TABLE DISP_HDR (
     DISP_RESLN_DT  CHAR(8)               -- YYYYMMDD, NULL until resolved
 );
 
+-- Idempotency log for the legacy write API (app/legacy_api.py): the only table
+-- any write tool ever touches besides CLM_HDR itself. A request key seen before
+-- returns its original cached response instead of re-applying the write.
+CREATE TABLE LGCY_REQ_LOG (
+    REQ_KEY      VARCHAR(64) PRIMARY KEY,
+    RESPONSE_XML TEXT NOT NULL,
+    CREATED_AT   TIMESTAMP NOT NULL DEFAULT now()
+);
+
 INSERT INTO STS_CD_LKUP (CD_TYP, CD_VAL, CD_DESC) VALUES
     ('CLM_STS', 'PD',  'Paid'),
     ('CLM_STS', 'DEN', 'Denied'),

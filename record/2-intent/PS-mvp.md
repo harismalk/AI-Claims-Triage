@@ -161,16 +161,16 @@ evidence: [test:tests/test_tools.py::test_lookup_claim_returns_a_typed_claim_vie
 `update_claim_status` and `issue_adjustment` go through a deliberately awkward
 legacy-style API (form-encoded or XML), not direct SQL.
 
-- [ ] Writes are only possible through the legacy API wrapper
-- [ ] Every write tool is declared `side_effect=True`
-- [ ] Writes are idempotent on a request key (a retried write does not double-apply)
+- [x] Writes are only possible through the legacy API wrapper
+- [x] Every write tool is declared `side_effect=True`
+- [x] Writes are idempotent on a request key (a retried write does not double-apply)
 
 Depends: T2.1
 
 ```ticket
 id: T2.2
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_write_tools.py::test_no_write_outside_the_legacy_api_module, test:tests/test_write_tools.py::test_both_write_tools_are_declared_side_effect, test:tests/test_write_tools.py::test_retried_write_with_same_request_key_does_not_double_apply, file:app/legacy_api.py]
 ```
 
 ### T2.3 · Tool runtime: live, replay, and write interception
