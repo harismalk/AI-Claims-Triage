@@ -8,6 +8,22 @@ on:
 jobs:
   record-and-tests:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: claims
+          POSTGRES_PASSWORD: claims_dev_pw
+          POSTGRES_DB: claims
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U claims -d claims"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      CLAIMS_DB_DSN: "dbname=claims user=claims password=claims_dev_pw host=localhost port=5432"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -15,9 +31,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pytest
+      - run: pip install -r requirements.txt
+      - name: Apply legacy schema
+        run: python3 -m scripts.apply_schema
       - name: Validate project record
         run: python3 tools/rec.py validate
       - name: Unit tests
         run: python3 -m pytest -q
-      # CP4 (T4.5) adds the eval suite and regression gate here.
+      - name: Eval suite and regression gate
+        run: python3 -m evals.regression_gate

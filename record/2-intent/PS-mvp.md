@@ -337,16 +337,16 @@ evidence: [test:tests/test_judge.py::test_clean_letter_scores_5, test:tests/test
 
 ### T4.5 · CI regression gate
 
-- [ ] GitHub Actions runs validate, unit tests, and the eval suite on every PR
-- [ ] A PR that lowers any tracked score below baseline, or breaks an invariant, fails
-- [ ] Each case runs multiple times and reports a pass rate, not a single pass/fail
+- [x] GitHub Actions runs validate, unit tests, and the eval suite on every PR
+- [x] A PR that lowers any tracked score below baseline, or breaks an invariant, fails
+- [x] Each case runs multiple times and reports a pass rate, not a single pass/fail
 
 Depends: T4.2, T4.3
 
 ```ticket
 id: T4.5
-status: todo
-evidence: []
+status: done
+evidence: [file:.github/workflows/ci.yml, test:tests/test_regression_gate.py::test_check_regression_detects_a_score_drop, test:tests/test_regression_gate.py::test_check_regression_detects_invariant_violations_even_with_perfect_scores, test:tests/test_regression_gate.py::test_each_case_runs_multiple_times_and_reports_a_pass_rate]
 ```
 
 ---
