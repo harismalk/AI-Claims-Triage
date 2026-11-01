@@ -23,6 +23,7 @@ from pydantic import BaseModel
 from app.complaints import load_complaints
 from app.generate_data import default_dsn
 from app.plans import Plan, load_plans
+from app.tool_meta import tool
 
 
 def _connect():
@@ -108,6 +109,7 @@ def _row_to_claim_view(cur, row: dict) -> ClaimView:
     )
 
 
+@tool(side_effect=False)
 def lookup_claim(claim_id: int) -> ClaimView | None:
     """Fetch a single claim by ID.
 
@@ -124,6 +126,7 @@ def lookup_claim(claim_id: int) -> ClaimView | None:
         return _row_to_claim_view(cur, row) if row else None
 
 
+@tool(side_effect=False)
 def find_similar_claims(claim_id: int) -> list[ClaimView]:
     """Find claims that could be confused with the given claim: same member and
     provider, and either the same procedure code or the same visit (grouped by
@@ -152,6 +155,7 @@ def find_similar_claims(claim_id: int) -> list[ClaimView]:
         return [_row_to_claim_view(cur, row) for row in cur.fetchall()]
 
 
+@tool(side_effect=False)
 def get_plan_terms(plan_code: str) -> Plan | None:
     """Fetch a plan's terms: copays, deductible, covered/excluded services, and
     network rules (fixtures/plans/plans.json, not the legacy database).
@@ -168,6 +172,7 @@ def get_plan_terms(plan_code: str) -> Plan | None:
     return None
 
 
+@tool(side_effect=False)
 def get_payment_history(member_id: int) -> list[ClaimView]:
     """Fetch a member's paid claims, most recent first. Useful for checking
     whether a copay charged on a disputed claim matches what was actually
@@ -187,6 +192,7 @@ def get_payment_history(member_id: int) -> list[ClaimView]:
         return [_row_to_claim_view(cur, row) for row in cur.fetchall()]
 
 
+@tool(side_effect=False)
 def get_dispute(dispute_id: int) -> DisputeView | None:
     """Fetch a dispute: its type/status resolved, its disputed claim attached,
     and the member's original complaint text (from the committed fixture, see

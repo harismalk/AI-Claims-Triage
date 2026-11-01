@@ -96,6 +96,17 @@ backend itself. It's generated and committed separately
 (`fixtures/complaints/complaints.json`, keyed by `DISP_ID_NBR`) and loaded by
 `app.complaints.load_complaints()` -- see [[DEC-0004-complaint-text-fixture]].
 
+## LGCY_REQ_LOG · legacy write-API idempotency log
+
+Added in T2.2. Not part of the original 2011 schema design; the single table
+every write tool's request key is checked against before any write is applied.
+
+| Column | Meaning |
+|---|---|
+| `REQ_KEY` | Caller-chosen idempotency key, primary key. A repeated key returns the cached `RESPONSE_XML` instead of re-applying the write |
+| `RESPONSE_XML` | The exact XML response returned the first time this key was seen |
+| `CREATED_AT` | When the request was first processed |
+
 ## Deliberate legacy quirks
 
 | Quirk | Where | Why it's realistic |

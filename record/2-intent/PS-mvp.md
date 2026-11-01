@@ -180,17 +180,17 @@ outputs, falls through to a snapshot DB, and raises on strict misses. Writes in
 non-live modes go to an effect log plus a copy-on-write overlay so later reads stay
 consistent. Undeclared tools are blocked outside live mode (fail closed).
 
-- [ ] The agent code is identical in live and replay modes
-- [ ] A replayed trace reproduces the original tool outputs exactly
-- [ ] An intercepted write appears in the effect log and in subsequent reads
-- [ ] A tool without a `side_effect` declaration is blocked in replay mode
+- [x] The agent code is identical in live and replay modes
+- [x] A replayed trace reproduces the original tool outputs exactly
+- [x] An intercepted write appears in the effect log and in subsequent reads
+- [x] A tool without a `side_effect` declaration is blocked in replay mode
 
 Depends: T2.2
 
 ```ticket
 id: T2.3
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_tool_runtime.py::test_agent_code_is_identical_in_live_and_replay_modes, test:tests/test_tool_runtime.py::test_replayed_trace_reproduces_original_outputs_exactly, test:tests/test_tool_runtime.py::test_intercepted_write_appears_in_effect_log_and_subsequent_reads, test:tests/test_tool_runtime.py::test_undeclared_tool_is_blocked_outside_live_mode]
 ```
 
 ---

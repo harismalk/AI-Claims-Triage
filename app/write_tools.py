@@ -14,7 +14,7 @@ from __future__ import annotations
 from pydantic import BaseModel
 
 from app.legacy_api import call_legacy_api
-from app.tool_meta import side_effect
+from app.tool_meta import tool
 
 
 class WriteResult(BaseModel):
@@ -26,7 +26,7 @@ class WriteResult(BaseModel):
     replayed: bool  # True if this request_key was already processed; the write was NOT re-applied
 
 
-@side_effect
+@tool(side_effect=True)
 def update_claim_status(claim_id: int, new_status_code: str, request_key: str) -> WriteResult:
     """Change a claim's status code (e.g. reversing a denial to paid).
 
@@ -52,7 +52,7 @@ def update_claim_status(claim_id: int, new_status_code: str, request_key: str) -
     return WriteResult(claim_id=claim_id, request_key=request_key, ok=True, replayed=replayed)
 
 
-@side_effect
+@tool(side_effect=True)
 def issue_adjustment(claim_id: int, amount_cents: int, request_key: str) -> WriteResult:
     """Issue a payment adjustment on a claim (e.g. a refund of an overcharge,
     or the amount paid on reversal).
