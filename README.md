@@ -31,7 +31,3 @@ claude                          # Claude Code starts oriented via the hook
 ```
 
 Then in Claude Code: `/execute-ticket T0.1`.
-
-## Known limits
-
-- This level of process is overkill for one person on one project. It's used here deliberately to practice it.

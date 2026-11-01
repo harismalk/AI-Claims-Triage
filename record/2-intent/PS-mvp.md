@@ -86,17 +86,17 @@ Generate ~200 members, ~50 providers, ~2,000 claims, ~200 disputes. Create each
 dispute by *planting the situation first*, then recording the correct answer.
 Fixed random seed so data is identical every run.
 
-- [ ] One command regenerates the full dataset deterministically from a seed
-- [ ] Scenario mix: ~35% should-reverse, ~25% denial-correct, ~20% edge, ~10% over-limit, ~10% adversarial
-- [ ] Every dispute has an answer-key row: decision, amount, evidence claim IDs
-- [ ] A test proves two runs with the same seed produce identical output
+- [x] One command regenerates the full dataset deterministically from a seed
+- [x] Scenario mix: ~35% should-reverse, ~25% denial-correct, ~20% edge, ~10% over-limit, ~10% adversarial
+- [x] Every dispute has an answer-key row: decision, amount, evidence claim IDs
+- [x] A test proves two runs with the same seed produce identical output
 
 Depends: T1.2
 
 ```ticket
 id: T1.3
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_generate_data.py::test_two_runs_same_seed_produce_identical_output, test:tests/test_generate_data.py::test_scenario_mix_matches_35_25_20_10_10_percent, test:tests/test_generate_data.py::test_every_dispute_has_an_answer_key_row, file:Makefile]
 ```
 
 ### T1.4 · Member complaint text, generated once and committed
@@ -104,16 +104,16 @@ evidence: []
 An LLM writes each dispute's complaint text from the planted scenario. Run once,
 cache to a committed file, never regenerate on test runs.
 
-- [ ] Complaint text is stored in a committed fixture and loaded by the seeder
-- [ ] Adversarial disputes include prompt-injection attempts in the complaint text
-- [ ] Test runs make no LLM calls to produce inputs
+- [x] Complaint text is stored in a committed fixture and loaded by the seeder
+- [x] Adversarial disputes include prompt-injection attempts in the complaint text
+- [x] Test runs make no LLM calls to produce inputs
 
 Depends: T1.3
 
 ```ticket
 id: T1.4
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_complaints.py::test_complaints_load_from_the_committed_fixture, test:tests/test_complaints.py::test_adversarial_disputes_include_prompt_injection_attempts, test:tests/test_complaints.py::test_no_network_or_llm_api_calls_in_complaint_generation_code, file:fixtures/complaints/complaints.json]
 ```
 
 ### T1.5 · Legacy data dictionary
