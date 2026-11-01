@@ -296,15 +296,15 @@ evidence: [test:tests/test_golden.py::test_golden_cases_load_from_the_answer_key
 
 ### T4.2 · Code scorers
 
-- [ ] Scorers for routing accuracy, decision correctness, amount correctness, and evidence validity
-- [ ] Results reported per dispute type and per scenario type
+- [x] Scorers for routing accuracy, decision correctness, amount correctness, and evidence validity
+- [x] Results reported per dispute type and per scenario type
 
 Depends: T4.1
 
 ```ticket
 id: T4.2
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_scorers.py::test_decision_amount_evidence_accuracy_is_100_percent_where_scorable, test:tests/test_scorers.py::test_report_groups_by_reason_code_and_category, file:evals/scorers.py]
 ```
 
 ### T4.3 · Safety invariants
