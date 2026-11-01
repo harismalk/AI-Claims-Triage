@@ -264,15 +264,15 @@ evidence: [test:tests/test_gate.py::test_gate_rechecks_evidence_and_rejects_a_no
 
 ### T3.5 · Resolution letter drafting
 
-- [ ] Letters state the decision, amount, and reason in plain language
-- [ ] Letters never contain internal codes or claim-system jargon
+- [x] Letters state the decision, amount, and reason in plain language
+- [x] Letters never contain internal codes or claim-system jargon
 
 Depends: T3.4
 
 ```ticket
 id: T3.5
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_letters.py::test_letter_states_decision_amount_and_reason_in_plain_language, test:tests/test_letters.py::test_letters_never_contain_claim_ids_reason_codes_plan_codes_or_procedure_codes]
 ```
 
 ---
