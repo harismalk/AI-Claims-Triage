@@ -205,16 +205,16 @@ evidence; submit a $2,000 one and watch it land in the adjuster queue.
 Route by reason code and rules. An LLM classifier is a fallback only when the
 reason code is missing or contradicts the complaint, and its use is logged.
 
-- [ ] Routing uses no LLM call when the reason code is present and consistent
-- [ ] Fallback classifications are logged with the reason the rules did not decide
-- [ ] Routing accuracy is reported by the eval suite
+- [x] Routing uses no LLM call when the reason code is present and consistent
+- [x] Fallback classifications are logged with the reason the rules did not decide
+- [x] Routing accuracy against the T1.3 answer key is measured and reported by a test/script (T4.2 wires this router into the formal eval suite once it exists)
 
 Depends: T2.1
 
 ```ticket
 id: T3.1
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_router.py::test_present_consistent_reason_code_never_calls_the_classifier, test:tests/test_router.py::test_missing_reason_code_falls_back_and_logs_why, test:tests/test_router.py::test_routing_accuracy_against_the_t1_3_answer_key, file:scripts/measure_routing_accuracy.py]
 ```
 
 ### T3.2 · Duplicate-denial specialist
