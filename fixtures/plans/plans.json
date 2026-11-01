@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "plans": [
+    {
+      "plan_code": "BRONZE",
+      "name": "Bronze PPO",
+      "plan_year": 2026,
+      "deductible_cents": 500000,
+      "out_of_pocket_max_cents": 800000,
+      "copays_cents": {
+        "primary_care_visit": 3000,
+        "specialist_visit": 6000,
+        "emergency_room": 35000,
+        "urgent_care": 7500,
+        "generic_drug": 1500,
+        "brand_drug": 5000,
+        "preventive_care": 0
+      },
+      "covered_services": [
+        "primary_care_visit",
+        "specialist_visit",
+        "emergency_room",
+        "urgent_care",
+        "generic_drug",
+        "brand_drug",
+        "preventive_care",
+        "lab_test",
+        "imaging",
+        "hospital_stay"
+      ],
+      "excluded_services": [
+        "cosmetic_surgery",
+        "experimental_treatment",
+        "fertility_treatment"
+      ],
+      "network_rules": {
+        "out_of_network_covered": false,
+        "out_of_network_coinsurance_pct": null,
+        "referral_required_for_specialist": true
+      }
+    },
+    {
+      "plan_code": "SILVER",
+      "name": "Silver PPO",
+      "plan_year": 2026,
+      "deductible_cents": 250000,
+      "out_of_pocket_max_cents": 650000,
+      "copays_cents": {
+        "primary_care_visit": 2500,
+        "specialist_visit": 5000,
+        "emergency_room": 30000,
+        "urgent_care": 6000,
+        "generic_drug": 1000,
+        "brand_drug": 4000,
+        "preventive_care": 0
+      },
+      "covered_services": [
+        "primary_care_visit",
+        "specialist_visit",
+        "emergency_room",
+        "urgent_care",
+        "generic_drug",
+        "brand_drug",
+        "preventive_care",
+        "lab_test",
+        "imaging",
+        "hospital_stay",
+        "mental_health_visit"
+      ],
+      "excluded_services": [
+        "cosmetic_surgery",
+        "experimental_treatment",
+        "fertility_treatment"
+      ],
+      "network_rules": {
+        "out_of_network_covered": true,
+        "out_of_network_coinsurance_pct": 50,
+        "referral_required_for_specialist": true
+      }
+    },
+    {
+      "plan_code": "GOLD",
+      "name": "Gold PPO",
+      "plan_year": 2026,
+      "deductible_cents": 100000,
+      "out_of_pocket_max_cents": 500000,
+      "copays_cents": {
+        "primary_care_visit": 2000,
+        "specialist_visit": 4000,
+        "emergency_room": 25000,
+        "urgent_care": 5000,
+        "generic_drug": 1000,
+        "brand_drug": 3500,
+        "preventive_care": 0,
+        "physical_therapy": 3000
+      },
+      "covered_services": [
+        "primary_care_visit",
+        "specialist_visit",
+        "emergency_room",
+        "urgent_care",
+        "generic_drug",
+        "brand_drug",
+        "preventive_care",
+        "lab_test",
+        "imaging",
+        "hospital_stay",
+        "mental_health_visit",
+        "physical_therapy"
+      ],
+      "excluded_services": [
+        "cosmetic_surgery",
+        "experimental_treatment"
+      ],
+      "network_rules": {
+        "out_of_network_covered": true,
+        "out_of_network_coinsurance_pct": 30,
+        "referral_required_for_specialist": false
+      }
+    },
+    {
+      "plan_code": "HDHP_2000",
+      "name": "High Deductible Health Plan 2000",
+      "plan_year": 2026,
+      "deductible_cents": 200000,
+      "out_of_pocket_max_cents": 700000,
+      "copays_cents": {
+        "primary_care_visit": 0,
+        "specialist_visit": 0,
+        "emergency_room": 0,
+        "urgent_care": 0,
+        "generic_drug": 0,
+        "brand_drug": 0,
+        "preventive_care": 0
+      },
+      "covered_services": [
+        "primary_care_visit",
+        "specialist_visit",
+        "emergency_room",
+        "urgent_care",
+        "generic_drug",
+        "brand_drug",
+        "preventive_care",
+        "lab_test",
+        "imaging",
+        "hospital_stay"
+      ],
+      "excluded_services": [
+        "cosmetic_surgery",
+        "experimental_treatment",
+        "fertility_treatment"
+      ],
+      "network_rules": {
+        "out_of_network_covered": false,
+        "out_of_network_coinsurance_pct": null,
+        "referral_required_for_specialist": false
+      }
+    }
+  ]
+}

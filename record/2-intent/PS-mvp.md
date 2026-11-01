@@ -69,15 +69,15 @@ evidence: [file:docker-compose.yml, file:db/schema.sql, file:record/1-truth/DICT
 Hand-write 3–4 insurance plans: copays by service type, deductibles, covered and
 excluded services, network rules. Everything downstream depends on these.
 
-- [ ] Plans load from a versioned fixture file
-- [ ] Each plan defines copays, deductible, covered services, and network rules
+- [x] Plans load from a versioned fixture file
+- [x] Each plan defines copays, deductible, covered services, and network rules
 
 Depends: T1.1
 
 ```ticket
 id: T1.2
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_plans.py::test_loads_from_the_fixture_file, test:tests/test_plans.py::test_every_plan_defines_copays_deductible_coverage_and_network_rules, test:tests/test_plans.py::test_malformed_plan_missing_deductible_fails_validation]
 ```
 
 ### T1.3 · Scenario-first data generator with answer key
