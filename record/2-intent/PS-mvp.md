@@ -283,15 +283,15 @@ Demo: change a specialist prompt, open a PR, and watch CI block it for a regress
 
 ### T4.1 · Golden dataset from the answer key
 
-- [ ] Golden cases load from the T1.3 answer key with scenario-type metadata
-- [ ] Each case bundles input, recorded tool outputs, and a DB snapshot reference
+- [x] Golden cases load from the T1.3 answer key with scenario-type metadata
+- [x] Each case bundles input, recorded tool outputs, and a DB snapshot reference
 
 Depends: T1.4, T2.3
 
 ```ticket
 id: T4.1
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_golden.py::test_golden_cases_load_from_the_answer_key_with_scenario_metadata, test:tests/test_golden.py::test_every_case_bundles_input_tool_outputs_and_snapshot_reference, test:tests/test_golden.py::test_recorded_case_is_replayable_without_touching_the_live_database, file:evals/golden.py]
 ```
 
 ### T4.2 · Code scorers
