@@ -120,16 +120,16 @@ evidence: [test:tests/test_complaints.py::test_complaints_load_from_the_committe
 
 Reverse-engineer and document the legacy schema as if you had inherited it.
 
-- [ ] `record/1-truth/DICT-legacy-schema.md` maps every cryptic column to its meaning
-- [ ] Status-code lookup values are documented
-- [ ] The doc's `covers:` frontmatter lists the schema files it describes
+- [x] `record/1-truth/DICT-legacy-schema.md` maps every cryptic column to its meaning
+- [x] Status-code lookup values are documented
+- [x] The doc's `covers:` frontmatter lists the schema files it describes
 
 Depends: T1.1
 
 ```ticket
 id: T1.5
-status: todo
-evidence: []
+status: done
+evidence: [file:record/1-truth/DICT-legacy-schema.md]
 ```
 
 ---
