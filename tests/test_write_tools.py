@@ -12,7 +12,7 @@ import app.write_tools
 from app.generate_data import default_dsn, generate_dataset, load_into_postgres
 from app.tool_meta import is_side_effect
 from app.tools import lookup_claim
-from app.write_tools import WriteResult, issue_adjustment, update_claim_status
+from app.write_tools import WriteResult, issue_adjustment, resolve_dispute, update_claim_status
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -64,9 +64,28 @@ def test_retried_write_with_same_request_key_does_not_double_apply(dataset):
     assert lookup_claim(claim_id).paid_amount_cents == 1000  # unchanged
 
 
+def test_different_request_types_sharing_one_request_key_do_not_collide(dataset):
+    """A caller resolving one dispute legitimately shares one request_key
+    across update_claim_status, issue_adjustment, and resolve_dispute --
+    these are different request types and must not be treated as retries of
+    each other, even though they share a key."""
+    claim_id = dataset.claims[3].clm_id
+    key = str(uuid.uuid4())
+
+    status_result = update_claim_status(claim_id, "PD", request_key=key)
+    amount_result = issue_adjustment(claim_id, amount_cents=4242, request_key=key)
+
+    assert not status_result.replayed
+    assert not amount_result.replayed  # must actually apply, not short-circuit on the shared key
+    claim = lookup_claim(claim_id)
+    assert claim.status_code == "PD"
+    assert claim.paid_amount_cents == 4242
+
+
 def test_both_write_tools_are_declared_side_effect():
     assert is_side_effect(update_claim_status)
     assert is_side_effect(issue_adjustment)
+    assert is_side_effect(resolve_dispute)
 
 
 def test_read_tools_are_not_declared_side_effect():

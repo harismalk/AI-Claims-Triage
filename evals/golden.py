@@ -27,16 +27,9 @@ from dataclasses import dataclass, field
 
 from app.gate import GateDecision, evaluate
 from app.generate_data import generate_dataset
-from app.router import REASON_TO_SPECIALIST
+from app.router import REASON_TO_SPECIALIST, SPECIALIST_PROPOSE_FNS
 from app.specialists.base import Proposal
-from app.specialists.billing_error.specialist import propose as propose_billing_error
-from app.specialists.duplicate_denial.specialist import propose as propose_duplicate_denial
 from app.tool_runtime import ToolCallRecord, ToolRuntime
-
-SPECIALIST_PROPOSE_FNS = {
-    "duplicate_denial": propose_duplicate_denial,
-    "billing_error": propose_billing_error,
-}
 
 
 @dataclass

@@ -357,15 +357,15 @@ Demo: override an agent recommendation in the UI and see a new eval case appear.
 
 ### T5.1 · API
 
-- [ ] FastAPI endpoints for listing disputes, viewing a case, and accepting or overriding
-- [ ] Request bodies validated; every endpoint has a test
+- [x] FastAPI endpoints for listing disputes, viewing a case, and accepting or overriding
+- [x] Request bodies validated; every endpoint has a test
 
 Depends: T3.4
 
 ```ticket
 id: T5.1
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_api.py::test_accept_recommendation_executes_the_write, test:tests/test_api.py::test_override_executes_a_different_decision_than_the_recommendation, test:tests/test_api.py::test_override_requires_decision_amount_and_reason, test:tests/test_write_tools.py::test_different_request_types_sharing_one_request_key_do_not_collide]
 ```
 
 ### T5.2 · Adjuster queue screen

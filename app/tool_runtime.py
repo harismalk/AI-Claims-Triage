@@ -39,6 +39,7 @@ TOOL_REGISTRY: dict[str, Callable] = {
     "get_member": tools.get_member,
     "update_claim_status": write_tools.update_claim_status,
     "issue_adjustment": write_tools.issue_adjustment,
+    "resolve_dispute": write_tools.resolve_dispute,
 }
 
 # Tools with no dependency on the legacy database at all (e.g. plan terms come

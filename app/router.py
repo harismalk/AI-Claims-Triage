@@ -13,6 +13,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable
 
+from app.specialists.billing_error.specialist import propose as propose_billing_error
+from app.specialists.duplicate_denial.specialist import propose as propose_duplicate_denial
+
 # record/1-truth/DOMAIN-claims-disputes.md dispute types. COV maps to no
 # specialist: coverage disputes always escalate directly, per that doc.
 REASON_TO_SPECIALIST: dict[str, str | None] = {
@@ -20,6 +23,14 @@ REASON_TO_SPECIALIST: dict[str, str | None] = {
     "BIL": "billing_error",
     "DOC": "missing_documents",
     "COV": None,
+}
+
+# specialist name -> its propose() function. "missing_documents" has no entry
+# yet -- no specialist is built for DOC (see T3.1's report); callers must
+# handle a missing key the same way they handle no specialist at all.
+SPECIALIST_PROPOSE_FNS: dict[str, Callable] = {
+    "duplicate_denial": propose_duplicate_denial,
+    "billing_error": propose_billing_error,
 }
 
 REASON_KEYWORDS: dict[str, tuple[str, ...]] = {
