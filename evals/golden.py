@@ -12,12 +12,20 @@ Disputes whose reason code has no specialist yet (DOC, COV) still get a case
 -- just with a minimal trace (the dispute lookup only) -- so the golden
 dataset covers the full answer key, not only the reason codes with a built
 specialist.
+
+specialist_trace and gate_decision (used by T4.3's safety invariants) are
+recorded from separate ToolRuntime instances, kept apart from the gate's own
+re-verification calls: a specialist calling only its own allowed tools is a
+different question from the gate separately calling lookup_claim/get_dispute
+to re-verify, and conflating the two would make the specialist-allowlist
+invariant meaningless (the gate legitimately calls tools no single
+specialist's allowlist covers).
 """
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from app.gate import evaluate
+from app.gate import GateDecision, evaluate
 from app.generate_data import generate_dataset
 from app.router import REASON_TO_SPECIALIST
 from app.specialists.base import Proposal
@@ -40,22 +48,29 @@ class GoldenCase:
     expected_decision: str
     expected_amount_cents: int
     expected_evidence_claim_ids: list[int]
-    recorded_trace: list[ToolCallRecord] = field(default_factory=list)
+    recorded_trace: list[ToolCallRecord] = field(default_factory=list)  # full trace: dispute lookup + specialist + gate
+    specialist_trace: list[ToolCallRecord] = field(default_factory=list)  # the specialist's own calls only
     snapshot_claim_ids: list[int] = field(default_factory=list)
     snapshot_dispute_ids: list[int] = field(default_factory=list)
     proposal: Proposal | None = None  # the specialist's proposal, if one exists for this reason code
+    gate_decision: GateDecision | None = None  # the gate's decision on that proposal, if any
 
 
 def _build_case(disp, row) -> GoldenCase:
-    runtime = ToolRuntime(mode="live")
-    dispute = runtime.call("get_dispute", dispute_id=disp.disp_id)
+    dispute_runtime = ToolRuntime(mode="live")
+    dispute = dispute_runtime.call("get_dispute", dispute_id=disp.disp_id)
 
     specialist_name = REASON_TO_SPECIALIST.get(row.reason_code)
     propose_fn = SPECIALIST_PROPOSE_FNS.get(specialist_name)
     proposal = None
+    specialist_runtime = ToolRuntime(mode="live")
     if propose_fn is not None:
-        proposal = propose_fn(disp.disp_id, runtime)
-        evaluate(proposal, runtime)
+        proposal = propose_fn(disp.disp_id, specialist_runtime)
+
+    gate_runtime = ToolRuntime(mode="live")
+    gate_decision = None
+    if proposal is not None:
+        gate_decision = evaluate(proposal, gate_runtime)
 
     claim_ids = sorted({dispute.claim.claim_id, *row.evidence_claim_ids})
     return GoldenCase(
@@ -66,10 +81,12 @@ def _build_case(disp, row) -> GoldenCase:
         expected_decision=row.decision,
         expected_amount_cents=row.amount_cents,
         expected_evidence_claim_ids=row.evidence_claim_ids,
-        recorded_trace=list(runtime.history),
+        recorded_trace=dispute_runtime.history + specialist_runtime.history + gate_runtime.history,
+        specialist_trace=list(specialist_runtime.history),
         snapshot_claim_ids=claim_ids,
         snapshot_dispute_ids=[disp.disp_id],
         proposal=proposal,
+        gate_decision=gate_decision,
     )
 
 

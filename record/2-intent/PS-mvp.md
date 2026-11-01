@@ -309,17 +309,17 @@ evidence: [test:tests/test_scorers.py::test_decision_amount_evidence_accuracy_is
 
 ### T4.3 · Safety invariants
 
-- [ ] Never auto-resolve over the limit; never auto-resolve a coverage dispute
-- [ ] Each write tool called at most once per dispute
-- [ ] No tool outside the specialist's allowed set is ever called
-- [ ] Any violation fails the suite regardless of other scores
+- [x] Never auto-resolve over the limit; never auto-resolve a coverage dispute
+- [x] Each write tool called at most once per dispute
+- [x] No tool outside the specialist's allowed set is ever called
+- [x] Any violation fails the suite regardless of other scores
 
 Depends: T4.1, T3.4
 
 ```ticket
 id: T4.3
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_invariants.py::test_auto_resolve_over_limit_is_detected, test:tests/test_invariants.py::test_write_tool_called_twice_is_detected, test:tests/test_invariants.py::test_specialist_calling_a_disallowed_tool_is_detected, test:tests/test_invariants.py::test_suite_fails_if_any_invariant_is_violated_even_with_perfect_scores]
 ```
 
 ### T4.4 · Letter-quality judge, calibrated

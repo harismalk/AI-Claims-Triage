@@ -1,28 +1,13 @@
-"""Tests for evals/scorers.py against the seeded (live) legacy database."""
-import psycopg2
+"""Tests for evals/scorers.py against the seeded (live) legacy database.
+
+golden_cases is a session-scoped fixture shared with test_golden.py and
+test_invariants.py -- see tests/conftest.py."""
 import pytest
 
-from app.generate_data import default_dsn, generate_dataset, load_into_postgres
-from evals.golden import build_golden_dataset
 from evals.scorers import CaseScore, report, score_all, score_case
 
 REASON_CODES = {"DUP", "BIL", "DOC", "COV"}
 SCENARIO_CATEGORIES = {"should_reverse", "denial_correct", "edge", "over_limit", "adversarial"}
-
-
-@pytest.fixture(scope="module", autouse=True)
-def seeded_db():
-    try:
-        conn = psycopg2.connect(default_dsn())
-        conn.close()
-    except psycopg2.OperationalError:
-        pytest.skip("Postgres is not reachable; start it with `docker compose up -d`", allow_module_level=True)
-    load_into_postgres(generate_dataset(42), default_dsn())
-
-
-@pytest.fixture(scope="module")
-def golden_cases():
-    return build_golden_dataset(seed=42)
 
 
 @pytest.fixture(scope="module")
