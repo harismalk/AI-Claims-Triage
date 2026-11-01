@@ -383,16 +383,16 @@ evidence: [file:frontend/src/App.tsx, file:frontend/src/EvidenceItem.tsx, test:t
 
 ### T5.3 · Overrides become eval cases
 
-- [ ] An override stores what the agent proposed, what the adjuster chose, and why
-- [ ] Overrides are grouped into failure patterns
-- [ ] One command promotes a reviewed override into a golden case with its snapshot
+- [x] An override stores what the agent proposed, what the adjuster chose, and why
+- [x] Overrides are grouped into failure patterns
+- [x] One command promotes a reviewed override into a golden case with its snapshot
 
 Depends: T5.1, T4.1
 
 ```ticket
 id: T5.3
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_overrides.py::test_override_records_what_was_proposed_chosen_and_why, test:tests/test_overrides.py::test_overrides_are_grouped_into_failure_patterns, test:tests/test_overrides.py::test_promote_override_builds_a_golden_case_with_snapshot, file:evals/promote_override.py]
 ```
 
 ---

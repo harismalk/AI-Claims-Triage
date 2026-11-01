@@ -19,6 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, model_validator
 
 from app.gate import evaluate
+from app.overrides import OverrideRecord, record_override
 from app.router import SPECIALIST_PROPOSE_FNS, route_dispute
 from app.tool_runtime import ToolRuntime
 from app.tools import ClaimView
@@ -178,9 +179,9 @@ def decide_case(dispute_id: int, body: DecisionRequest):
     if dispute.status_code != "OPN":
         raise HTTPException(status_code=409, detail=f"dispute {dispute_id} is not open (status={dispute.status_code})")
 
+    proposal, _gate_decision = _recommendation(dispute_id, dispute.dispute_type_code, dispute.complaint_text, runtime)
+
     if body.action == "accept":
-        proposal, _gate_decision = _recommendation(dispute_id, dispute.dispute_type_code, dispute.complaint_text,
-                                                     runtime)
         if proposal is None:
             raise HTTPException(status_code=400,
                                  detail="no recommendation exists for this dispute; use action=override")
@@ -196,6 +197,18 @@ def decide_case(dispute_id: int, body: DecisionRequest):
                      request_key=request_key)
     runtime.call("resolve_dispute", dispute_id=dispute_id, resolution_amount_cents=final_amount_cents,
                  request_key=request_key)
+
+    if body.action == "override":
+        record_override(OverrideRecord(
+            dispute_id=dispute_id,
+            claim_id=claim_id,
+            reason_code=dispute.dispute_type_code,
+            proposed_decision=proposal.decision if proposal else None,
+            proposed_amount_cents=proposal.amount_cents if proposal else None,
+            chosen_decision=final_decision,
+            chosen_amount_cents=final_amount_cents,
+            reason=body.reason,
+        ))
 
     return DecisionResponse(
         dispute_id=dispute_id,
