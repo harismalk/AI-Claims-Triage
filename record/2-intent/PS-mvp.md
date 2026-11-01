@@ -144,16 +144,16 @@ typed results; run the same call in replay mode and get the recorded result.
 `lookup_claim`, `find_similar_claims`, `get_plan_terms`, `get_payment_history`,
 `get_dispute`. Each wraps the ugly legacy data and returns clean typed objects.
 
-- [ ] Each tool has a typed return model and a docstring written for an LLM reader
-- [ ] Each tool has tests against the seeded database
-- [ ] No tool returns a raw legacy column name
+- [x] Each tool has a typed return model and a docstring written for an LLM reader
+- [x] Each tool has tests against the seeded database
+- [x] No tool returns a raw legacy column name
 
 Depends: T1.3
 
 ```ticket
 id: T2.1
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_tools.py::test_lookup_claim_returns_a_typed_claim_view, test:tests/test_tools.py::test_get_dispute_returns_claim_and_complaint_text, test:tests/test_tools.py::test_no_tool_return_model_uses_raw_legacy_column_names, file:app/tools.py]
 ```
 
 ### T2.2 · Write path through a clunky legacy API
