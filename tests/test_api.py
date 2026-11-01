@@ -58,6 +58,24 @@ def test_get_case_404_for_missing_dispute(client):
     assert response.status_code == 404
 
 
+def test_get_claim_opens_the_underlying_record_for_each_evidence_item(client, dataset):
+    """Every evidence item an adjuster sees in a case is a claim ID; this is
+    what the UI calls to open it."""
+    row = next(r for r in dataset.answer_key if r.reason_code == "DUP" and r.category == "should_reverse")
+    assert len(row.evidence_claim_ids) >= 2  # a DUP case cites both claims being compared
+
+    for claim_id in row.evidence_claim_ids:
+        response = client.get(f"/claims/{claim_id}")
+        assert response.status_code == 200
+        body = response.json()
+        assert body["claim_id"] == claim_id
+
+
+def test_get_claim_404_for_missing_claim(client):
+    response = client.get("/claims/999999")
+    assert response.status_code == 404
+
+
 def test_accept_recommendation_executes_the_write(client, dataset):
     row = next(r for r in dataset.answer_key if r.reason_code == "DUP" and r.category == "should_reverse")
     response = client.post(f"/disputes/{row.disp_id}/decisions", json={"action": "accept"})

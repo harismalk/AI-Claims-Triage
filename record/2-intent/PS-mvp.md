@@ -370,15 +370,15 @@ evidence: [test:tests/test_api.py::test_accept_recommendation_executes_the_write
 
 ### T5.2 · Adjuster queue screen
 
-- [ ] One React screen: queue, case summary, recommendation, evidence links, accept/override
-- [ ] Every evidence item opens the underlying record
+- [x] One React screen: queue, case summary, recommendation, evidence links, accept/override
+- [x] Every evidence item opens the underlying record
 
 Depends: T5.1
 
 ```ticket
 id: T5.2
-status: todo
-evidence: []
+status: done
+evidence: [file:frontend/src/App.tsx, file:frontend/src/EvidenceItem.tsx, test:tests/test_api.py::test_get_claim_opens_the_underlying_record_for_each_evidence_item]
 ```
 
 ### T5.3 · Overrides become eval cases

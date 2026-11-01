@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  color: #1a1a1a;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.queue {
+  width: 340px;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.queue h1 {
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+.queue ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.queue-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.4rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.queue-item.selected {
+  border-color: #3366cc;
+  background: #eef3fc;
+}
+
+.queue-item .dispute-id {
+  font-weight: 600;
+}
+
+.queue-item .reason-code {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.queue-item .recommendation {
+  font-size: 0.8rem;
+}
+
+.case-panel {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+.complaint-text {
+  background: #f7f7f7;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #ccc;
+  font-style: italic;
+}
+
+.recommendation-box,
+.evidence-box,
+.decision-box {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.gate-reasons {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.evidence-item {
+  margin-bottom: 0.5rem;
+}
+
+.evidence-link {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+
+.claim-record {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0.5rem 0.75rem;
+  background: #f7f7f7;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0.2rem 0.5rem;
+}
+
+.claim-record dt {
+  font-weight: 600;
+  color: #555;
+}
+
+.claim-record dd {
+  margin: 0;
+}
+
+.decision-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.override-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 320px;
+}
+
+.override-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  gap: 0.2rem;
+}
+
+.error {
+  color: #a32020;
+}

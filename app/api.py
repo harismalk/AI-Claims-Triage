@@ -15,6 +15,7 @@ from datetime import date
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, model_validator
 
 from app.gate import evaluate
@@ -23,6 +24,16 @@ from app.tool_runtime import ToolRuntime
 from app.tools import ClaimView
 
 app = FastAPI(title="Claims Dispute Adjuster API")
+
+# T5.2's React dev server runs on a different origin; this API has no
+# authentication yet (MVP scope), so this is permissive by design, not an
+# oversight -- tighten before this is ever exposed beyond local dev.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class DisputeSummary(BaseModel):
@@ -143,6 +154,17 @@ def get_case(dispute_id: int):
         gate_action=gate_decision.action if gate_decision else None,
         gate_reasons=gate_decision.reasons if gate_decision else [],
     )
+
+
+@app.get("/claims/{claim_id}", response_model=ClaimView)
+def get_claim(claim_id: int):
+    """Fetch one claim's full record. A case's evidence is cited by claim ID
+    only; this is what an evidence link in the UI opens."""
+    runtime = _runtime()
+    claim = runtime.call("lookup_claim", claim_id=claim_id)
+    if claim is None:
+        raise HTTPException(status_code=404, detail=f"no claim {claim_id}")
+    return claim
 
 
 @app.post("/disputes/{dispute_id}/decisions", response_model=DecisionResponse)
