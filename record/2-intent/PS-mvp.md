@@ -324,15 +324,15 @@ evidence: [test:tests/test_invariants.py::test_auto_resolve_over_limit_is_detect
 
 ### T4.4 · Letter-quality judge, calibrated
 
-- [ ] An LLM judge scores letters against a written rubric
-- [ ] Judge agreement with ~30 hand-graded letters is measured and reported
+- [x] An LLM judge scores letters against a written rubric
+- [x] Judge agreement with ~30 hand-graded letters is measured and reported
 
 Depends: T3.5
 
 ```ticket
 id: T4.4
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_judge.py::test_clean_letter_scores_5, test:tests/test_judge.py::test_judge_calibration_is_measured_and_reported, file:fixtures/letters/hand_graded.json, file:evals/letter_rubric.md]
 ```
 
 ### T4.5 · CI regression gate

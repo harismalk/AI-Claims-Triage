@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "member_name": "Avery Thistlewood",
+    "issues_payment": true,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean, complete, professional.",
+    "letter": "Dear Avery Thistlewood,\n\nWe have reviewed your dispute and found that the charge was mistakenly treated as a duplicate when it was a separate service. We are issuing a payment of $42.50 to resolve this matter.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 2,
+    "member_name": "Jordan Oakhaven",
+    "issues_payment": false,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean deny letter, clear and respectful.",
+    "letter": "Dear Jordan Oakhaven,\n\nWe have reviewed your dispute. After careful review, regarding the amount you were charged did not match your plan's terms for that service, we have confirmed that the original decision was correct, and no additional payment is owed.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 3,
+    "member_name": "Riley Cedarfield",
+    "issues_payment": true,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean, complete, professional.",
+    "letter": "Dear Riley Cedarfield,\n\nWe have reviewed your dispute and found that the required documentation was on file but was not reflected in the original decision. We are issuing a payment of $118.20 to resolve this matter.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 4,
+    "member_name": "Skyler Larkspur",
+    "issues_payment": false,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean deny letter.",
+    "letter": "Dear Skyler Larkspur,\n\nWe have reviewed your dispute. After careful review, regarding the charge was mistakenly treated as a duplicate when it was a separate service, we have confirmed that the original decision was correct, and no additional payment is owed.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 5,
+    "member_name": "Morgan Westfall",
+    "issues_payment": true,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean, complete, professional.",
+    "letter": "Dear Morgan Westfall,\n\nWe have reviewed your dispute and found that the amount you were charged did not match your plan's terms for that service. We are issuing a payment of $9.75 to resolve this matter.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 6,
+    "member_name": "Casey Brightwater",
+    "issues_payment": true,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean, complete, professional.",
+    "letter": "Dear Casey Brightwater,\n\nWe have reviewed your dispute and found that the required documentation was on file but was not reflected in the original decision. We are issuing a payment of $256.00 to resolve this matter.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 7,
+    "member_name": "Quinn Northgate",
+    "issues_payment": false,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean deny letter.",
+    "letter": "Dear Quinn Northgate,\n\nWe have reviewed your dispute. After careful review, regarding the required documentation was on file but was not reflected in the original decision, we have confirmed that the original decision was correct, and no additional payment is owed.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 8,
+    "member_name": "Reese Stonebridge",
+    "issues_payment": true,
+    "hand_score": 5,
+    "hand_grade_notes": "Clean, complete, professional.",
+    "letter": "Dear Reese Stonebridge,\n\nWe have reviewed your dispute and found that the charge was mistakenly treated as a duplicate when it was a separate service. We are issuing a payment of $63.10 to resolve this matter.\n\nIf you have any questions about this decision, please contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 9,
+    "member_name": "Avery Thistlewood",
+    "issues_payment": true,
+    "hand_score": 4,
+    "hand_grade_notes": "Missing greeting only; otherwise fine.",
+    "letter": "We have reviewed your dispute and found that the charge was mistakenly treated as a duplicate when it was a separate service. We are issuing a payment of $42.50 to resolve this matter.\n\nIf you have any questions, contact Member Services.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 10,
+    "member_name": "Jordan Oakhaven",
+    "issues_payment": true,
+    "hand_score": 3,
+    "hand_grade_notes": "Says a payment is coming but never says how much -- a real functional gap, not just cosmetic.",
+    "letter": "Dear Jordan Oakhaven,\n\nWe have reviewed your dispute and found that the charge was mistakenly treated as a duplicate. We are issuing a payment to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 11,
+    "member_name": "Riley Cedarfield",
+    "issues_payment": true,
+    "hand_score": 2,
+    "hand_grade_notes": "Leaks an internal claim ID to the member -- a real privacy/professionalism problem, worse than a single cosmetic defect.",
+    "letter": "Dear Riley Cedarfield,\n\nWe have reviewed claim 482 and found it was mistakenly treated as a duplicate. We are issuing a payment of $118.20 to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 12,
+    "member_name": "Skyler Larkspur",
+    "issues_payment": true,
+    "hand_score": 2,
+    "hand_grade_notes": "Leaks the internal plan code to the member -- same category of problem as a claim ID leak.",
+    "letter": "Dear Skyler Larkspur,\n\nWe have reviewed your dispute under your GOLD plan and found it was mistakenly treated as a duplicate. We are issuing a payment of $63.10 to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 13,
+    "member_name": "Morgan Westfall",
+    "issues_payment": true,
+    "hand_score": 2,
+    "hand_grade_notes": "Leaks a bare internal reason code to the member.",
+    "letter": "Dear Morgan Westfall,\n\nYour dispute (type DUP) has been reviewed. We are issuing a payment of $9.75 to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 14,
+    "member_name": "Casey Brightwater",
+    "issues_payment": true,
+    "hand_score": 4,
+    "hand_grade_notes": "Missing closing only; otherwise fine.",
+    "letter": "Dear Casey Brightwater,\n\nWe have reviewed your dispute and found that the required documentation was on file but was not reflected in the original decision. We are issuing a payment of $256.00 to resolve this matter."
+  },
+  {
+    "id": 15,
+    "member_name": "Quinn Northgate",
+    "issues_payment": true,
+    "hand_score": 2,
+    "hand_grade_notes": "Far too vague -- 'Approved' with no explanation and no amount would leave a member confused and frustrated.",
+    "letter": "Dear Quinn Northgate,\n\nYour dispute has been reviewed. Approved.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 16,
+    "member_name": "Reese Stonebridge",
+    "issues_payment": false,
+    "hand_score": 1,
+    "hand_grade_notes": "Dismissive and blames the member. Completely unacceptable tone regardless of which boxes it technically checks.",
+    "letter": "Dear Reese Stonebridge,\n\nYour complaint was obviously without merit. We're not paying you anything, and you should have read your plan documents more carefully before filing this dispute.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 17,
+    "member_name": "Avery Thistlewood",
+    "issues_payment": true,
+    "hand_score": 3,
+    "hand_grade_notes": "Too informal a greeting for official correspondence about money, though the content is otherwise fine.",
+    "letter": "Hey Avery,\n\nWe have reviewed your dispute and found that the charge was mistakenly treated as a duplicate when it was a separate service. We are issuing a payment of $42.50 to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 18,
+    "member_name": "Jordan Oakhaven",
+    "issues_payment": true,
+    "hand_score": 4,
+    "hand_grade_notes": "Technically complete but so rambling and padded that it buries the actual decision -- a real quality problem the rubric doesn't name directly.",
+    "letter": "Dear Jordan Oakhaven,\n\nThank you so much for reaching out to us regarding your recent dispute, which we take very seriously and have reviewed thoroughly with our dedicated team of claims specialists who carefully examined every aspect of your case including the original claim, the plan terms, the provider's billing practices, and all related documentation over the course of several business days of diligent review. After this exhaustive review process, we have found that the amount you were charged did not match your plan's terms for that service. We are issuing a payment of $9.75 to resolve this matter, and we hope this resolves your concerns to your satisfaction, though please do not hesitate to reach out again should you have any further questions or concerns about this or any other matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 19,
+    "member_name": "Morgan Westfall",
+    "issues_payment": true,
+    "hand_score": 3,
+    "hand_grade_notes": "Missing both greeting and closing.",
+    "letter": "We have reviewed your dispute and found that the charge was mistakenly treated as a duplicate when it was a separate service. We are issuing a payment of $63.10 to resolve this matter."
+  },
+  {
+    "id": 20,
+    "member_name": "Casey Brightwater",
+    "issues_payment": true,
+    "hand_score": 2,
+    "hand_grade_notes": "Missing greeting AND missing the amount -- two real gaps stacked, not just one.",
+    "letter": "We have reviewed your dispute and found that the amount you were charged did not match your plan's terms. We are issuing a payment to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 21,
+    "member_name": "Riley Cedarfield",
+    "issues_payment": true,
+    "hand_score": 1,
+    "hand_grade_notes": "Reads like an internal note that leaked to the member: jargon-heavy, no closing, no warmth at all.",
+    "letter": "Dear Riley Cedarfield,\n\nClaim 971 was denied under reason code BIL. We are issuing a payment of $34.00 to resolve this matter."
+  },
+  {
+    "id": 22,
+    "member_name": "Skyler Larkspur",
+    "issues_payment": false,
+    "hand_score": 2,
+    "hand_grade_notes": "The implied threat of 'further action' against the member's account is inappropriate and would alarm a member, even though every rubric box is technically checked.",
+    "letter": "Dear Skyler Larkspur,\n\nWe have reviewed your dispute. After careful review, we have confirmed that the original decision was correct, and no additional payment is owed. If you continue to dispute this, further action may be taken against your account.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 23,
+    "member_name": "Morgan Westfall",
+    "issues_payment": false,
+    "hand_score": 4,
+    "hand_grade_notes": "Correct and polite but very terse -- doesn't really explain why, just that the decision stands.",
+    "letter": "Dear Morgan Westfall,\n\nAfter review, the original decision was correct, and no additional payment is owed.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 24,
+    "member_name": "Casey Brightwater",
+    "issues_payment": true,
+    "hand_score": 3,
+    "hand_grade_notes": "Amount is written in a non-standard way ('256 dollars') that could confuse a member about the exact figure.",
+    "letter": "Dear Casey Brightwater,\n\nWe have reviewed your dispute and found that the charge was mistakenly treated as a duplicate. We are issuing a payment of 256 dollars to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 25,
+    "member_name": "Quinn Northgate",
+    "issues_payment": true,
+    "hand_score": 1,
+    "hand_grade_notes": "Two separate jargon leaks (claim ID and plan code) in one short letter -- a serious compliance problem, not a one-point deduction.",
+    "letter": "Dear Quinn Northgate,\n\nRegarding claim 1203 under your SILVER plan, we found a billing error. We are issuing a payment of $18.40 to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 26,
+    "member_name": "Reese Stonebridge",
+    "issues_payment": true,
+    "hand_score": 4,
+    "hand_grade_notes": "Misspells the member's name in the greeting ('Stonebrige') -- a real but minor error.",
+    "letter": "Dear Reese Stonebrige,\n\nWe have reviewed your dispute and found that the charge was mistakenly treated as a duplicate when it was a separate service. We are issuing a payment of $63.10 to resolve this matter.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 27,
+    "member_name": "Avery Thistlewood",
+    "issues_payment": false,
+    "hand_score": 2,
+    "hand_grade_notes": "The stated reason ('the weather in your area') is nonsensical and explains nothing real -- a serious content failure a keyword check alone would miss.",
+    "letter": "Dear Avery Thistlewood,\n\nWe have reviewed your dispute. After careful review, regarding the weather in your area, we have confirmed that the original decision was correct, and no additional payment is owed.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 28,
+    "member_name": "Jordan Oakhaven",
+    "issues_payment": true,
+    "hand_score": 5,
+    "hand_grade_notes": "Slightly unusual phrasing but covers every dimension cleanly.",
+    "letter": "Dear Jordan Oakhaven,\n\nWe are issuing a payment of $5.00 to resolve this matter regarding the required documentation was on file but was not reflected in the original decision.\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 29,
+    "member_name": "Riley Cedarfield",
+    "issues_payment": true,
+    "hand_score": 3,
+    "hand_grade_notes": "Overly casual and exclamation-heavy for official correspondence about money, even though it covers every dimension.",
+    "letter": "Dear Riley Cedarfield,\n\nGreat news!! We are issuing a payment of $118.20 to resolve this matter because the charge was mistakenly treated as a duplicate!!! Thanks for reaching out!!\n\nSincerely,\nMember Services"
+  },
+  {
+    "id": 30,
+    "member_name": "Skyler Larkspur",
+    "issues_payment": false,
+    "hand_score": 1,
+    "hand_grade_notes": "Never actually states a decision at all -- just boilerplate. A member would have no idea what happened to their dispute.",
+    "letter": "Dear Skyler Larkspur,\n\nThank you for contacting Member Services.\n\nSincerely,\nMember Services"
+  }
+]
