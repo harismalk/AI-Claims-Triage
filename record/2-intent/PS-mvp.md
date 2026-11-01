@@ -250,16 +250,16 @@ The LLM proposes; code verifies. Auto-resolve only when the amount is under the
 limit, the dispute type is auto-eligible, every cited record exists and supports
 the claim, and no risk flag is set. Everything else escalates with reasons.
 
-- [ ] The gate re-checks cited evidence against the database before acting
-- [ ] Coverage disputes and amounts over the limit always escalate
-- [ ] Every gate decision records which rule allowed or blocked it
+- [x] The gate re-checks cited evidence against the database before acting
+- [x] Coverage disputes and amounts over the limit always escalate
+- [x] Every gate decision records which rule allowed or blocked it
 
 Depends: T3.2
 
 ```ticket
 id: T3.4
-status: todo
-evidence: []
+status: done
+evidence: [test:tests/test_gate.py::test_gate_rechecks_evidence_and_rejects_a_nonexistent_cited_claim, test:tests/test_gate.py::test_coverage_disputes_always_escalate_even_with_a_clean_proposal, test:tests/test_gate.py::test_amount_over_the_limit_always_escalates, test:tests/test_gate.py::test_every_decision_records_reasons]
 ```
 
 ### T3.5 · Resolution letter drafting
