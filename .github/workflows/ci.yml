@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  record-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # staleness checks compare git history
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - name: Validate project record
+        run: python3 tools/rec.py validate
+      - name: Unit tests
+        run: python3 -m pytest -q
+      # CP4 (T4.5) adds the eval suite and regression gate here.

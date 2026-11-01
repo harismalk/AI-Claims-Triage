@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 tools/rec.py *)",
+      "Bash(python3 -m pytest *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/tools/rec.py", "orient"],
+            "statusMessage": "Loading project record"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/tools/rec.py", "guard"]
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/tools/rec.py", "stop-check"],
+            "statusMessage": "Validating project record"
+          }
+        ]
+      }
+    ]
+  }
+}
