@@ -26,9 +26,10 @@ export function EvidenceItem({ claimId }: { claimId: number }) {
   return (
     <div className="evidence-item">
       <button className="evidence-link" onClick={toggle}>
-        claim #{claimId} {open ? "▾" : "▸"}
+        <span>claim #{claimId}</span>
+        <span className={open ? "evidence-chevron open" : "evidence-chevron"}>▶</span>
       </button>
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error-banner">{error}</p>}
       {open && claim && (
         <dl className="claim-record">
           <dt>Procedure</dt>
